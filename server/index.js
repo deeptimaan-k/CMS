@@ -7,12 +7,12 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import connectDB from './config/db.js';
 
-// Load environment variables first
+
 dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB with retry logic
+
 const connectWithRetry = async () => {
   try {
     await connectDB();
@@ -24,18 +24,18 @@ const connectWithRetry = async () => {
 
 connectWithRetry();
 
-// Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
-// Logging middleware in development
+
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Import routes
+
 import customerRoutes from './routes/customerRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import segmentRoutes from './routes/segmentRoutes.js';
@@ -46,7 +46,7 @@ import aiRoutes from './routes/aiRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import deliveryRoutes from './routes/deliveryRoutes.js';
 
-// API Routes
+
 app.use('/api/customers', customerRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/segments', segmentRoutes);
@@ -57,12 +57,12 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/delivery', deliveryRoutes);
 
-// Basic route for testing
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
-// Error handling middleware
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).json({

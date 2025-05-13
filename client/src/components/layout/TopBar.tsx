@@ -25,7 +25,7 @@ const TopBar = ({ onMenuClick }: TopBarProps) => {
   return (
     <header className="flex h-16 flex-shrink-0 border-b border-gray-200 bg-white">
       <div className="flex flex-1 items-center justify-between px-4">
-        {/* Mobile menu button */}
+       
         <button
           type="button"
           className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 md:hidden"
@@ -34,7 +34,7 @@ const TopBar = ({ onMenuClick }: TopBarProps) => {
           <Menu className="h-6 w-6" />
         </button>
         
-        {/* Search bar */}
+       
         <div className="hidden md:flex md:w-full md:max-w-xs">
           <div className="relative w-full">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -47,10 +47,9 @@ const TopBar = ({ onMenuClick }: TopBarProps) => {
             />
           </div>
         </div>
-        
-        {/* User menu */}
+       
         <div className="flex items-center">
-          {/* Notifications */}
+         
           <button
             type="button"
             className="ml-3 rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -59,7 +58,7 @@ const TopBar = ({ onMenuClick }: TopBarProps) => {
             <Bell className="h-6 w-6" />
           </button>
           
-          {/* Profile dropdown */}
+      
           <div className="relative ml-3">
             <div>
               <button
@@ -84,7 +83,7 @@ const TopBar = ({ onMenuClick }: TopBarProps) => {
               </button>
             </div>
             
-            {/* Dropdown menu */}
+            
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                 <div 

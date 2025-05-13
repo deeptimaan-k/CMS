@@ -12,7 +12,7 @@ import { customerSchema } from '../validation/schemas.js';
 
 const router = express.Router();
 
-// Handle /new route before /:id routes
+
 router.route('/new')
   .get(protect, (req, res) => {
     res.json({ message: 'Create new customer form' });

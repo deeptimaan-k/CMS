@@ -7,19 +7,19 @@ const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   
-  // Close sidebar when route changes on mobile
+  
   useEffect(() => {
     setSidebarOpen(false);
   }, [location.pathname]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
-      {/* Sidebar for larger devices */}
+      
       <div className="hidden md:flex md:w-64 md:flex-col">
         <Sidebar />
       </div>
       
-      {/* Mobile sidebar */}
+      
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div 
@@ -32,7 +32,7 @@ const Layout = () => {
         </div>
       )}
       
-      {/* Main content */}
+     
       <div className="flex flex-1 flex-col overflow-hidden">
         <TopBar onMenuClick={() => setSidebarOpen(true)} />
         

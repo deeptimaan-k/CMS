@@ -8,7 +8,7 @@ const analyzeCampaign = expressAsyncHandler(async (req, res) => {
   const { campaignId } = req.params;
 
   try {
-    // Fetch campaign details
+   
     const campaign = await Campaign.findById(campaignId)
       .populate('segment', 'name conditions')
       .exec();
@@ -18,13 +18,13 @@ const analyzeCampaign = expressAsyncHandler(async (req, res) => {
       throw new Error('Campaign not found');
     }
 
-    // Fetch message logs
+   
     const messages = await Message.find({ campaign: campaignId })
       .populate('customer', 'name totalSpend visits lastActiveDate')
       .limit(10)
       .exec();
 
-    // Prepare sample logs for analysis
+    
     const sampleLogs = messages.map(msg => ({
       name: msg.customer.name,
       status: msg.status,
@@ -34,7 +34,7 @@ const analyzeCampaign = expressAsyncHandler(async (req, res) => {
       message: msg.content.body
     }));
 
-    // Prepare prompt for Gemini
+    
     const promptText = `You are an AI CRM assistant. Analyze the following campaign:
 
 📌 Campaign Info:
@@ -64,7 +64,7 @@ Respond as:
 - Tags:
 - Next Best Send Time:`;
 
-    // Call Gemini API
+   
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
@@ -81,7 +81,7 @@ Respond as:
       }
     );
 
-    // Parse Gemini response
+ 
     const content = response.data.candidates[0].content.parts[0].text;
     const sections = content.split('\n\n');
     

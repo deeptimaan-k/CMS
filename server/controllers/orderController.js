@@ -2,9 +2,7 @@ import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 import Customer from '../models/customerModel.js';
 
-// @desc    Get all orders
-// @route   GET /api/orders
-// @access  Private
+
 const getOrders = expressAsyncHandler(async (req, res) => {
   const orders = await Order.find({ user: req.user._id })
     .populate('customer_id', 'name email')
@@ -12,9 +10,7 @@ const getOrders = expressAsyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-// @desc    Get order by ID
-// @route   GET /api/orders/:id
-// @access  Private
+
 const getOrderById = expressAsyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
     .populate('customer_id', 'name email');
@@ -27,13 +23,11 @@ const getOrderById = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Create new order
-// @route   POST /api/orders
-// @access  Private
+
 const createOrder = expressAsyncHandler(async (req, res) => {
   const { order_id, customer_id, amount, date } = req.body;
 
-  // Verify customer exists and belongs to user
+ 
   const customer = await Customer.findOne({ 
     _id: customer_id,
     user: req.user._id 

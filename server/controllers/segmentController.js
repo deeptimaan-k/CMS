@@ -2,17 +2,13 @@ import expressAsyncHandler from 'express-async-handler';
 import Segment from '../models/segmentModel.js';
 import Customer from '../models/customerModel.js';
 
-// @desc    Get all segments
-// @route   GET /api/segments
-// @access  Private
+
 const getSegments = expressAsyncHandler(async (req, res) => {
   const segments = await Segment.find({ user: req.user._id }).sort({ createdAt: -1 });
   res.json(segments);
 });
 
-// @desc    Get segment by ID
-// @route   GET /api/segments/:id
-// @access  Private
+
 const getSegmentById = expressAsyncHandler(async (req, res) => {
   const segment = await Segment.findById(req.params.id);
 
@@ -24,7 +20,6 @@ const getSegmentById = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// Helper function to build MongoDB query from segment conditions
 const buildSegmentQuery = (conditions, conditionLogic) => {
   if (!conditions || conditions.length === 0) {
     return {};
@@ -55,7 +50,7 @@ const buildSegmentQuery = (conditions, conditionLogic) => {
         query[field] = { $gte: start, $lte: end };
         break;
       default:
-        // Skip invalid operators
+        
         break;
     }
 
@@ -65,9 +60,6 @@ const buildSegmentQuery = (conditions, conditionLogic) => {
   return conditionLogic === 'OR' ? { $or: queries } : { $and: queries };
 };
 
-// @desc    Preview segment audience
-// @route   POST /api/segments/preview
-// @access  Private
 const previewSegment = expressAsyncHandler(async (req, res) => {
   const { conditions } = req.body;
   
@@ -80,9 +72,6 @@ const previewSegment = expressAsyncHandler(async (req, res) => {
   res.json({ count });
 });
 
-// @desc    Create segment
-// @route   POST /api/segments
-// @access  Private
 const createSegment = expressAsyncHandler(async (req, res) => {
   const { name, description, conditions } = req.body;
 
@@ -95,7 +84,7 @@ const createSegment = expressAsyncHandler(async (req, res) => {
   });
 
   if (segment) {
-    // Calculate estimated count
+    
     const query = buildSegmentQuery(conditions, conditions.combinator);
     const count = await Customer.countDocuments({ 
       ...query,
@@ -113,9 +102,6 @@ const createSegment = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update segment
-// @route   PUT /api/segments/:id
-// @access  Private
 const updateSegment = expressAsyncHandler(async (req, res) => {
   const segment = await Segment.findById(req.params.id);
 
@@ -127,7 +113,7 @@ const updateSegment = expressAsyncHandler(async (req, res) => {
     segment.isActive = req.body.isActive !== undefined ? req.body.isActive : segment.isActive;
     segment.lastUpdated = Date.now();
 
-    // Recalculate estimated count
+
     const query = buildSegmentQuery(segment.conditions, segment.conditionLogic);
     const count = await Customer.countDocuments({ 
       ...query,
@@ -144,9 +130,6 @@ const updateSegment = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete segment
-// @route   DELETE /api/segments/:id
-// @access  Private
 const deleteSegment = expressAsyncHandler(async (req, res) => {
   const segment = await Segment.findById(req.params.id);
 
@@ -159,9 +142,7 @@ const deleteSegment = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get customers in segment
-// @route   GET /api/segments/:id/customers
-// @access  Private
+
 const getSegmentCustomers = expressAsyncHandler(async (req, res) => {
   const segment = await Segment.findById(req.params.id);
 

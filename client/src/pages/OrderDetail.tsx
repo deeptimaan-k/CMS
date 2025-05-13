@@ -130,7 +130,6 @@ const OrderDetail = () => {
             </div>
 
             <div>
-              {/* Additional order details like status history, etc. can be added here */}
             </div>
           </div>
         </div>

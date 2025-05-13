@@ -1,17 +1,12 @@
 import expressAsyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 
-// @desc    Get all users
-// @route   GET /api/users
-// @access  Private/Admin
 const getUsers = expressAsyncHandler(async (req, res) => {
   const users = await User.find({}).select('-password');
   res.json(users);
 });
 
-// @desc    Get user by ID
-// @route   GET /api/users/:id
-// @access  Private/Admin
+
 const getUserById = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select('-password');
   
@@ -23,9 +18,7 @@ const getUserById = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
+
 const deleteUser = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   
@@ -42,9 +35,7 @@ const deleteUser = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update user
-// @route   PUT /api/users/:id
-// @access  Private/Admin
+
 const updateUser = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   

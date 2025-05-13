@@ -1,7 +1,6 @@
-// Base API URL
+
 export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'; // Updated port to 5001
 
-// Customer statuses
 export const CUSTOMER_STATUSES = [
   { value: 'active', label: 'Active' },
   { value: 'inactive', label: 'Inactive' },
@@ -10,7 +9,7 @@ export const CUSTOMER_STATUSES = [
   { value: 'churned', label: 'Churned' },
 ];
 
-// Order statuses
+
 export const ORDER_STATUSES = [
   { value: 'pending', label: 'Pending' },
   { value: 'processing', label: 'Processing' },
@@ -20,7 +19,7 @@ export const ORDER_STATUSES = [
   { value: 'refunded', label: 'Refunded' },
 ];
 
-// Payment statuses
+
 export const PAYMENT_STATUSES = [
   { value: 'pending', label: 'Pending' },
   { value: 'paid', label: 'Paid' },
@@ -28,7 +27,7 @@ export const PAYMENT_STATUSES = [
   { value: 'refunded', label: 'Refunded' },
 ];
 
-// Campaign types
+
 export const CAMPAIGN_TYPES = [
   { value: 'email', label: 'Email' },
   { value: 'sms', label: 'SMS' },
@@ -36,7 +35,7 @@ export const CAMPAIGN_TYPES = [
   { value: 'social', label: 'Social Media' },
 ];
 
-// Campaign statuses
+
 export const CAMPAIGN_STATUSES = [
   { value: 'draft', label: 'Draft' },
   { value: 'scheduled', label: 'Scheduled' },
@@ -46,7 +45,7 @@ export const CAMPAIGN_STATUSES = [
   { value: 'cancelled', label: 'Cancelled' },
 ];
 
-// Segment condition operators
+
 export const SEGMENT_OPERATORS = [
   { value: 'equals', label: 'Equals' },
   { value: 'notEquals', label: 'Not Equals' },
@@ -57,7 +56,7 @@ export const SEGMENT_OPERATORS = [
   { value: 'notIn', label: 'Not In List' },
 ];
 
-// Segment condition fields
+
 export const SEGMENT_FIELDS = [
   { value: 'firstName', label: 'First Name' },
   { value: 'lastName', label: 'Last Name' },
@@ -70,7 +69,7 @@ export const SEGMENT_FIELDS = [
   { value: 'lastActivity', label: 'Last Activity' },
 ];
 
-// Format date
+
 export const formatDate = (date: string | Date) => {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -79,7 +78,7 @@ export const formatDate = (date: string | Date) => {
   });
 };
 
-// Format currency
+
 export const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',

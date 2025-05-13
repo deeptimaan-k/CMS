@@ -23,21 +23,21 @@ const Customers = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        // First check existing customers
+        
         const existingResponse = await axios.get(`${API_URL}/customers`);
         
-        // If we already have customers, just display them
+        
         if (existingResponse.data.length > 0) {
           setCustomers(existingResponse.data);
           setLoading(false);
           return;
         }
 
-        // Only fetch and add dummy users if we don't have any customers
+      
         const dummyResponse = await axios.get('https://dummyjson.com/users?limit=10');
         const dummyUsers = dummyResponse.data.users;
 
-        // Add dummy users as customers one by one to handle potential errors
+       
         for (const user of dummyUsers) {
           try {
             const customerData = {
@@ -50,14 +50,14 @@ const Customers = () => {
 
             await axios.post(`${API_URL}/customers`, customerData);
           } catch (err: any) {
-            // Skip if customer already exists
+           
             if (err.response?.status !== 400) {
               console.error(`Failed to add customer: ${user.email}`, err);
             }
           }
         }
 
-        // Fetch final list of customers
+      
         const response = await axios.get(`${API_URL}/customers`);
         setCustomers(response.data);
       } catch (err: any) {

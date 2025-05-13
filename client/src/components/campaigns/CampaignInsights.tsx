@@ -64,7 +64,7 @@ const CampaignInsights = ({ campaignId }: CampaignInsightsProps) => {
       transition={{ duration: 0.5 }}
       className="space-y-6"
     >
-      {/* Performance Summary */}
+      
       <div className="bg-primary-50 rounded-lg p-4">
         <div className="flex items-start">
           <Brain className="h-5 w-5 text-primary-600 mt-1 mr-3" />
@@ -75,7 +75,7 @@ const CampaignInsights = ({ campaignId }: CampaignInsightsProps) => {
         </div>
       </div>
 
-      {/* Message Suggestions */}
+      
       <div className="bg-white rounded-lg border border-gray-200 p-4">
         <div className="flex items-center mb-3">
           <MessageSquare className="h-5 w-5 text-gray-400 mr-2" />
@@ -93,7 +93,6 @@ const CampaignInsights = ({ campaignId }: CampaignInsightsProps) => {
         </div>
       </div>
 
-      {/* Campaign Tags */}
       <div className="flex items-center space-x-2">
         <Tag className="h-4 w-4 text-gray-400" />
         <div className="flex flex-wrap gap-2">
@@ -108,7 +107,7 @@ const CampaignInsights = ({ campaignId }: CampaignInsightsProps) => {
         </div>
       </div>
 
-      {/* Next Best Send Time */}
+      
       <div className="flex items-center text-sm text-gray-600">
         <Clock className="h-4 w-4 text-gray-400 mr-2" />
         <span>Recommended next send time: {insights.nextBestTime}</span>

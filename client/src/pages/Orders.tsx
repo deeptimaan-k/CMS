@@ -25,21 +25,21 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        // First check existing orders
+       
         const existingResponse = await axios.get(`${API_URL}/orders`);
         
-        // If we already have orders, just display them
+       
         if (existingResponse.data.length > 0) {
           setOrders(existingResponse.data);
           setLoading(false);
           return;
         }
 
-        // Only fetch and add dummy orders if we don't have any
+       
         const dummyResponse = await axios.get('https://dummyjson.com/carts?limit=5');
         const dummyCarts = dummyResponse.data.carts;
 
-        // Get existing customers
+       
         const customersResponse = await axios.get(`${API_URL}/customers`);
         const customers = customersResponse.data;
 
@@ -47,7 +47,7 @@ const Orders = () => {
           throw new Error('No customers found. Please add customers first.');
         }
 
-        // Add dummy orders one by one
+       
         for (const cart of dummyCarts) {
           try {
             const randomCustomer = customers[Math.floor(Math.random() * customers.length)];
@@ -64,7 +64,7 @@ const Orders = () => {
           }
         }
 
-        // Fetch final list of orders
+       
         const response = await axios.get(`${API_URL}/orders`);
         setOrders(response.data);
       } catch (err: any) {

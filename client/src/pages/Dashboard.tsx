@@ -40,9 +40,9 @@ const Dashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   
-  // For demo purposes, we'll simulate data
+  
   useEffect(() => {
-    // Simulate API call
+   
     setTimeout(() => {
       setStats({
         totalCustomers: 256,
@@ -55,7 +55,7 @@ const Dashboard = () => {
     }, 1000);
   }, []);
   
-  // Demo recent activities
+  
   const recentActivities = [
     { 
       _id: '1', 
@@ -87,7 +87,7 @@ const Dashboard = () => {
     },
   ];
   
-  // Stats cards configuration
+  
   const statsCards = [
     {
       title: 'Total Customers',
@@ -151,7 +151,7 @@ const Dashboard = () => {
     show: { opacity: 1, y: 0 },
   };
   
-  // Activity icon mapping
+  
   const getActivityIcon = (type: string) => {
     switch (type) {
       case 'customer':
@@ -239,7 +239,7 @@ const Dashboard = () => {
       )}
       
       <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {/* Recent Activity */}
+       
         <motion.div
           className="rounded-lg bg-white p-6 shadow-sm"
           initial={{ opacity: 0, y: 20 }}
@@ -272,7 +272,7 @@ const Dashboard = () => {
           </div>
         </motion.div>
         
-        {/* Campaign Performance */}
+       
         <motion.div
           className="rounded-lg bg-white p-6 shadow-sm"
           initial={{ opacity: 0, y: 20 }}

@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: false, // Not required for OAuth users
+      required: false, 
     },
     isAdmin: {
       type: Boolean,
@@ -35,12 +35,11 @@ const userSchema = mongoose.Schema(
   }
 );
 
-// Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Encrypt password before saving
+
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password') || !this.password) {
     next();

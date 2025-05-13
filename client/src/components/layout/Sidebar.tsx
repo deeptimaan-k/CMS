@@ -54,7 +54,7 @@ const Sidebar = ({ mobile = false, onClose }: SidebarProps) => {
   
   return (
     <div className="flex h-full flex-col border-r border-gray-200 bg-white">
-      {/* Header with logo */}
+     
       <div className="flex h-16 flex-shrink-0 items-center justify-between px-4">
         <Link to="/" className="flex items-center">
           <span className="text-xl font-bold text-primary-600">CRM Hub</span>
@@ -70,7 +70,7 @@ const Sidebar = ({ mobile = false, onClose }: SidebarProps) => {
         )}
       </div>
       
-      {/* User profile section */}
+      
       {user && (
         <div className="border-b border-gray-200 px-4 py-4">
           <div className="flex items-center space-x-3">
@@ -99,14 +99,14 @@ const Sidebar = ({ mobile = false, onClose }: SidebarProps) => {
         </div>
       )}
       
-      {/* Navigation */}
+
       <nav className="mt-2 flex-1 space-y-1 px-2">
         {navigation.map((item) => (
           <NavLink key={item.name} item={item} />
         ))}
       </nav>
       
-      {/* Footer */}
+     
       <div className="border-t border-gray-200 p-4">
         <Link
           to="/profile"

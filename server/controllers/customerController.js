@@ -1,17 +1,13 @@
 import expressAsyncHandler from 'express-async-handler';
 import Customer from '../models/customerModel.js';
 
-// @desc    Get all customers
-// @route   GET /api/customers
-// @access  Private
+
 const getCustomers = expressAsyncHandler(async (req, res) => {
   const customers = await Customer.find({ user: req.user._id }).sort({ createdAt: -1 });
   res.json(customers);
 });
 
-// @desc    Get customer by ID
-// @route   GET /api/customers/:id
-// @access  Private
+
 const getCustomerById = expressAsyncHandler(async (req, res) => {
   if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
     res.status(400);
@@ -31,9 +27,6 @@ const getCustomerById = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Create new customer
-// @route   POST /api/customers
-// @access  Private
 const createCustomer = expressAsyncHandler(async (req, res) => {
   const { name, email, phone, total_spend, visits, last_active_date } = req.body;
 
@@ -62,9 +55,6 @@ const createCustomer = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update customer
-// @route   PUT /api/customers/:id
-// @access  Private
 const updateCustomer = expressAsyncHandler(async (req, res) => {
   if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
     res.status(400);
@@ -92,9 +82,6 @@ const updateCustomer = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete customer
-// @route   DELETE /api/customers/:id
-// @access  Private
 const deleteCustomer = expressAsyncHandler(async (req, res) => {
   if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
     res.status(400);

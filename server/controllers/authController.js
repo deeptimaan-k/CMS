@@ -65,18 +65,18 @@ const googleAuth = expressAsyncHandler(async (req, res) => {
   const { accessToken } = req.body;
   
   try {
-    // Get user info from Google
+    
     const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     
     const { email, name, picture, sub: googleId } = data;
     
-    // Check if user exists
+    
     let user = await User.findOne({ email });
     
     if (!user) {
-      // Create new user if doesn't exist
+      
       user = await User.create({
         name,
         email,
@@ -84,7 +84,7 @@ const googleAuth = expressAsyncHandler(async (req, res) => {
         picture,
       });
     } else {
-      // Update existing user with Google info
+     
       user.googleId = googleId;
       user.picture = picture;
       await user.save();

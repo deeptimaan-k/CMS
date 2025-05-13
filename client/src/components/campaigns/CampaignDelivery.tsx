@@ -25,7 +25,7 @@ const CampaignDelivery = ({ campaignId, onDeliveryComplete }: CampaignDeliveryPr
       const response = await axios.post(`${API_URL}/campaigns/${campaignId}/send`);
       setDeliveryStats({ messageCount: response.data.messageCount });
 
-      // Poll for delivery status updates
+     
       const pollInterval = setInterval(async () => {
         try {
           const statusResponse = await axios.get(`${API_URL}/campaigns/${campaignId}`);
@@ -45,7 +45,7 @@ const CampaignDelivery = ({ campaignId, onDeliveryComplete }: CampaignDeliveryPr
         }
       }, 2000);
 
-      // Clear interval after 30 seconds to prevent infinite polling
+      
       setTimeout(() => clearInterval(pollInterval), 30000);
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to send campaign');

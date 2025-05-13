@@ -40,7 +40,6 @@ const Register = () => {
   };
   
   const handleGoogleLogin = async () => {
-    // In a real application, we would use the Google OAuth API
     alert('Google login would be implemented with actual OAuth integration');
   };
   
